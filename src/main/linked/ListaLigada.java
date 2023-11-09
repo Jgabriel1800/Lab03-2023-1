@@ -7,20 +7,41 @@ public class ListaLigada implements EstruturaElementar{
     private No cabeca;
 
     public ListaLigada() {
-
+        cabeca=null;
     }
 
     @Override
     public boolean buscaElemento(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaElemento'");
+        No atual= cabeca;
+        while( atual != null){
+            if(atual.getValor()==valor){
+                return true;
+            }
+            atual=atual.getProximo();
+        }
+        return false;
     }
 
     @Override
     public int buscaIndice(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaIndice'");
-    }
+       int i=0; 
+       
+       No n= cabeca;
+       
+       for(n=cabeca; cabeca.getProximo()!= null; n = n.getProximo()){
+            
+            if(n.getValor()==valor){
+                
+                return i;
+
+            }else
+
+                i++;
+        }
+            
+        return -i;
+       }
+    
 
     @Override
     public int minimo() {
@@ -60,15 +81,29 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void insereInicio(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereInicio'");
+        if(cabeca==null){
+            cabeca= new No(valor);
+        }else{
+            No n= new No(valor);
+            n.setProximo(this.cabeca);
+            this.cabeca=n;
+        }
     }
 
     @Override
     public void insereFim(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereFim'");
-    }
+        if(cabeca==null){
+            No cabeca=new No(valor);
+        }else{
+            No n=cabeca;
+            while(n.getProximo() != null){
+            n= n.getProximo();
+        }
+        n.setProximo(valor);
+        }
+        }
+        
+    
 
     @Override
     public void remove(int valor) {
