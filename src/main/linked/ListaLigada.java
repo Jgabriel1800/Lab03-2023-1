@@ -199,23 +199,29 @@ public class ListaLigada implements EstruturaElementar{
     @Override
     public void removeIndice(int indice) {
         if (cabeca == null) {
-            return;
+            return; 
         }
+    
         if (indice == 0) {
             cabeca = cabeca.getProximo();
             return;
         }
+    
         No atual = cabeca;
         int ordem = 0;
-
+    
         while (atual != null && ordem < indice - 1) {
             atual = atual.getProximo();
-            ordem ++;
+            ordem++;
         }
-
-        if (atual != null && atual.getProximo() != null) {
-            atual.setProximo(atual.getProximo().getProximo());
+    
+        if (atual == null || atual.getProximo() == null) {
+            return; 
         }
+    
+        No proximo = atual.getProximo().getProximo(); 
+    
+        atual.setProximo(proximo);
     }
 
     @Override
